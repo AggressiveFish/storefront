@@ -1,22 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import github from "./github";
+import { useEffect, useState, useCallback } from "react";
 
 function App() {
+  const [userCount, setUserCount] = useState(0);
+  const [userName, setUserName] = useState("");
+
+  const doIt = useCallback(() => {
+       const githubCall = {
+            query: `{
+                viewer {
+                    name
+                    bio
+                }
+            }`
+       };
+       fetch(github.baseURL,
+              {
+                method: "POST",
+                body: JSON.stringify(githubCall), 
+                headers: github.headers
+              }
+            )
+            .then(response => response.json() )
+            .then(data => {
+                setUserCount(userCount+1);
+                setUserName(data.data.viewer.name);      
+                console.log(`--- Data is ${data.data.viewer.name} ${userCount}`);
+              }
+            )
+            .catch(err => { console.log(err); });
+  }, []);
+  useEffect(() => { 
+                    doIt(); 
+                  }, []);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <div className="text-primary">Hello World {userCount} {userName}</div>
       </header>
     </div>
   );

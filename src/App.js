@@ -28,7 +28,7 @@ function App() {
                 console.log(`--- Data is ${data.data.viewer.name} ${userCount}`);
               }
             )
-            .catch(err => { console.log(err); 
+            .catch(err => { console.log(err); } );
   }, []);
   useEffect(() => { 
                     doIt();   

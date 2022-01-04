@@ -28,15 +28,15 @@ function App() {
                 console.log(`--- Data is ${data.data.viewer.name} ${userCount}`);
               }
             )
-            .catch(err => { console.log(err); });
+            .catch(err => { console.log(err); 
   }, []);
   useEffect(() => { 
-                    doIt(); 
+                    doIt();   
                   }, []);
   return (
     <div className="App">
       <header className="App-header">
-          <div className="text-primary">Hello World {userCount} {userName}</div>
+          <div className="text-primary">Hello World x 300 {userCount} {userName}</div>
       </header>
     </div>
   );

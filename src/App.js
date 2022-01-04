@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <div className="text-primary">Hello World, from {userName}</div>
+          <div className="text-primary">Hello {userName}</div>
       </header>
     </div>
   );
